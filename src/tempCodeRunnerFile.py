@@ -1,1 +1,0 @@
-    contents.get_phonetics()
