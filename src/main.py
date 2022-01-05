@@ -55,7 +55,7 @@ def main():
             sys.exit(1)
         else:
             # if erikwond does not know it, print error message exit
-            if not erikwonda.check(word, language):
+            if not erikwonda.check(word, formatted(language)):
                 print("\nSorry, please check your spelling or the language specified.\nIf you are certain that this is the correct spelling, I would suggest\
                        heading to [https://google.com/search] to check.\n")
                 sys.exit(1)

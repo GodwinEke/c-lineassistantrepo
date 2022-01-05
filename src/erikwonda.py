@@ -75,24 +75,24 @@ def check(keyword, language):
 
     # Check for the word in the specified language
     if language == "english":
-        rows = cursor.execute("SELECT * FROM words_en WHERE words = :word", {"word": formatted(language)}).fetchall()
+        rows = cursor.execute("SELECT * FROM words_en WHERE words = :word", {"word": formatted(keyword)}).fetchall()
 
     elif language == "russian":
-        rows = cursor.execute("SELECT * FROM words_rus WHERE words = :word", {"word": formatted(language)}).fetchall()
+        rows = cursor.execute("SELECT * FROM words_rus WHERE words = :word", {"word": formatted(keyword)}).fetchall()
 
     elif language == "german":
-        rows = cursor.execute("SELECT * FROM words_ger WHERE words = :word", {"word":formatted(language)}).fetchall()
+        rows = cursor.execute("SELECT * FROM words_ger WHERE words = :word", {"word":formatted(keyword)}).fetchall()
 
     elif language == "chinese":
-        rows = cursor.execute("SELECT * FROM words_china WHERE words = :word", {"word": formatted(language)}).fetchall()
+        rows = cursor.execute("SELECT * FROM words_china WHERE words = :word", {"word": formatted(keyword)}).fetchall()
 
     elif language == "french":
-        rows = cursor.execute("SELECT * FROM words_fr WHERE words = :word", {"word": formatted(language)}).fetchall()
+        rows = cursor.execute("SELECT * FROM words_fr WHERE words = :word", {"word": formatted(keyword)}).fetchall()
 
     elif language == "japanese":
-        rows = cursor.execute("SELECT * FROM words_japan WHERE words = :word", {"word": formatted(language)}).fetchall()
+        rows = cursor.execute("SELECT * FROM words_japan WHERE words = :word", {"word": formatted(keyword)}).fetchall()
     elif language == "spanish":
-        rows = cursor.execute("SELECT * FROM words_es WHERE word = :word", {"word": formatted(language)}).fetchall()
+        rows = cursor.execute("SELECT * FROM words_es WHERE word = :word", {"word": formatted(keyword)}).fetchall()
 
    # Close the cursor and connection
     cursor.close()
