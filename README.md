@@ -11,7 +11,7 @@ APIs such as [The Guardian API](https://open-platform.theguardian.com/) and [The
 words
 - Defines any English word with all its meanings, pronunciations, synonyms and antonyms in the dictionary.
 - Gives users a list of recent news of different sections (Business, Technology, World News etc.) from The Guardian using The Guardian API.
-- Verifies if a person is eligible for a Full License, Provisional License, or a Learner's Permit from all 54 states of America.
+- Verifies if a person is eligible for a Full License, Provisional License, or a Learner's Permit from all 50 states of America.
 - *Strikes up a conversation with a user.
 - Prints out jokes, commonly referred to as Dad **Jokes**.
 - User can add or remove events in their TODO lists. If not deleted (that is, crossed out realistically), users can always pull up their TODO
