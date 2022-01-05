@@ -62,5 +62,16 @@ GIF created by[https://ezgif.com/](https://ezgif.com/)
 # Notes
 - *Data used for the license detector was gotten from [The Word Population Review](https://worldpopulationreview.com/state-rankings/driving-age-by-state)
 - **Erikwonda is still subject to further development
+
+# Credits
+- List of words in German, French, English and Spanish were gotten from:
+[@lorenbritcher](https://github.com/lorenbrichter/words)
+
+- Russian, Japanese:
+[@hingston](https://github.com/hingston/russian/blob/master/100000-russian-words.txt)
+
+- Chinese:
+[@lwinmoe](https://github.com/lwinmoe/segment/blob/master/chinese-word-list.txt)
+
 # Report Issues
 If you have any problems or issues or suggestions, you are most welcomed :handshake:
