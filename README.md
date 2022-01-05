@@ -60,7 +60,7 @@ GIF created by[https://ezgif.com/](https://ezgif.com/)
 - Create a function to prompt users to get valid input to remove redundancies of the ```try-except``` function block.
 
 # Notes
-* Data used for the license detector was gotten from [The Word Population Review](https://worldpopulationreview.com/state-rankings/driving-age-by-state)
-**Erikwonda is still subject to further development
+- *Data used for the license detector was gotten from [The Word Population Review](https://worldpopulationreview.com/state-rankings/driving-age-by-state)
+- **Erikwonda is still subject to further development
 # Report Issues
 If you have any problems or issues or suggestions, you are most welcomed :handshake:
