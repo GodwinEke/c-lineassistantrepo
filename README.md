@@ -1,6 +1,6 @@
 # **Erikwonda** :technologist:
 ----------------------------------------------------------------------------------------------------------------
-This is Erikwonda, a command-line virtual assistant aimed to have versatile functionalities done on the terminal 
+This is Erikwonda, a command-line virtual assistant  for programmers aimed to have versatile functionalities done on the terminal 
 without having to browse everything on the Internet. With the tap of a key, Erikwonda is being built to bring the 
 Internet to the terminal (and not to replace it though). Erikwonda was built with Python and SQL, leveraging the SQLite framework and
 APIs such as [The Guardian API](https://open-platform.theguardian.com/) and [The Free Dictionary](https://dictionaryapi.dev/) 
