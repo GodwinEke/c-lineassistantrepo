@@ -92,7 +92,7 @@ def check(keyword, language):
     elif language == "japanese":
         rows = cursor.execute("SELECT * FROM words_japan WHERE words = :word", {"word": formatted(keyword)}).fetchall()
     elif language == "spanish":
-        rows = cursor.execute("SELECT * FROM words_es WHERE word = :word", {"word": formatted(keyword)}).fetchall()
+        rows = cursor.execute("SELECT * FROM words_es WHERE words = :word", {"word": formatted(keyword)}).fetchall()
 
    # Close the cursor and connection
     cursor.close()
