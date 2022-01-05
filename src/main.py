@@ -12,6 +12,7 @@
 import sys
 import argparse
 import erikwonda
+from erikwonda import formatted
 
 
 KEYWORDS = ["about", "hello", "hey", 
@@ -49,7 +50,7 @@ def main():
         language = input("What language? ")
 
         # Ensure language is in the languages erikwonda knows
-        if language not in erikwonda.languages():
+        if formatted(language) not in erikwonda.languages():
             print("\nSorry, I do not know this language yet.\n Type [-k help] to know the languages I can check.\n")
             sys.exit(1)
         else:
