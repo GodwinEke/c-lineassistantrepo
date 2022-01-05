@@ -51,7 +51,7 @@ and set as ```FILE_PATH```.
 Here is a walkthrough of Erikwonda:
 ![Walkthrough](https://github.com/GodwinEke/c-lineassistantrepo/blob/master/gif/walkthrough.gif)
 
-GIF created by[https://ezgif.com/](https://ezgif.com/)
+GIF created by[Convertio](https://convertio.co/mp4-gif/)
 
 # Future Improvements
 - Implement more functionalities
