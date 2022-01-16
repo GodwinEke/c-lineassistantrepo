@@ -42,6 +42,7 @@ eligible                        Checks if user is eligbile for a Full Licence, P
 hello, howdy, hey               Prompts erikwonda to start a conversation with user.
 add_todo                        Add events into a TODO list for user
 see_todo                        Returns a list of events added to TODO list
+remove_todo                     Allows user to remove events from TODO list.
 ```
 
 To use the ```news``` keyword, user must retrieve an ```API_KEY``` from [The Guardian](https://open-platform.theguardian.com/) and add to your ```ENVIRONMENT_VARIABLE```
@@ -61,7 +62,7 @@ GIF created by[https://ezgif.com/](https://ezgif.com/)
 
 # Notes
 - *Data used for the license detector was gotten from [The Word Population Review](https://worldpopulationreview.com/state-rankings/driving-age-by-state)
-- **Erikwonda is still subject to further development
+- **Erikwonda is currently under active development
 
 # Credits
 Please refer to [CREDITS.md](https://github.com/GodwinEke/c-lineassistantrepo/blob/master/data/wordstxt/CREDITS.md) to see the people that made this project
