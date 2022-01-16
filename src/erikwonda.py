@@ -11,15 +11,17 @@ erikwonda.help(): returns a list of keywords used when running the program
 erikwonda.check (keyword, language): returns a statement verifying if a word is a Russian, Chinese, Japanese, Spanish, or English word.
 erikwonda.hello(): strikes up a conversation with user
 """
-from datetime import datetime
+
 import sqlite3
-from jokes import Jokes, greetings
 import time
 import requests
-from dictionary import Dictionary
-from news import News
 import os
 import license_detector
+from functions import get_integer, formatted
+from jokes import Jokes, greetings
+from datetime import datetime
+from news import News
+from dictionary import Dictionary
 
 HAPPY_CONDITION = ["I am fine", "I'm good", "I'm ok", "I am good", "I am ok",
                    "fine", "good", "happy", "lively", "awesome", "elated", 
@@ -32,7 +34,7 @@ SAD_CONDITION = ["sad", "lonely", "angry", "not fine",
 
 
 YES = ['yes', 'y', 'yup', 'yeh', 'yeah', 'sure']
-NO = ['no', 'nope', 'nah', 'nay']
+NO = ['no', 'n',  'nope', 'nah', 'nay']
 
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -44,11 +46,11 @@ news\t\t\t\tReturns a list of recent news of different sections (Business, Tech 
 define\t\t\t\tReturns definitions, synonyms and antonyms of a word using the Free Dictionary API.\n\
 help\t\t\t\tReturns a list of command-line arguments to type to implement the functionalitie.s\n\
 check\t\t\t\tChecks if user input is a word in English, Chinese, Russian, German, Japanese, French or Spanish.\n\
-eligible\t\t\tChecks if user is eligbile for a Full Licence, Provisional License or Learner's Permit in all 54 states of America\n\
+eligible\t\t\tChecks if user is eligbile for a Full Licence, Provisional License or Learner's Permit in all 54 states of America.\n\
 hello, howdy, hey\t\tPrompts erikwonda to start a conversation with user.\n\
-add_todo\t\t\tAdd events into a TODO list for user\n\
-see_todo\t\t\tReturns a list of events added to TODO list"
-
+add_todo\t\t\tAdd events into a TODO list for user.\n\
+see_todo\t\t\tReturns a list of events added to TODO list.\n\
+remove_todo\t\tAllows user to remove events from TODO list."
 
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -121,15 +123,6 @@ def default_message():
     """
     return "Seems I do not understand since i only speak 0 and 1.\n\
 Just in case, if you need any help, just type [python main.py -k KEYWORD] on your terminal."
-
-
-# -----------------------------------------------------------------------------------------------------------------------------------------------------------------
-def formatted(word) -> str:
-    """"
-    Assumes word as str,
-    Returns the word in lowercase and stripped from whitespaces or trailing spaces.
-    """
-    return word.strip().lower()
 
 
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -262,7 +255,7 @@ def define(word_input):
     contents.print_phonetics()
     contents.print_meanings()
     print()
-    print("-----Results generated in {:.4f} seconds-----\n".format(end-start))
+    print("-----Results generated in {:.4f} seconds-----\n".format(end - start))
 
 
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -313,20 +306,32 @@ def add_todo():
 
     #get the description of 'TODO'
     today = datetime.now()
-    description = input('What do you want to add? ')
-    cursor.execute('INSERT INTO todo(day, month, year, description) VALUES(?,?,?,?)', (today.day, today.month, today.year, formatted(description)))
+    
+    # Allow user to add as many entries as desired
+    while True:
+        description = input('What do you want to add? ')
+        cursor.execute('INSERT INTO todo(day, month, year, description) VALUES(?,?,?,?)', (today.day, today.month, today.year, formatted(description)))
+        
+        if cursor.rowcount > 0:
+            print('Success.')
+        
+        # save changes here before asking user to add another entry
+        connection.commit()
 
-    if cursor.rowcount > 0:
-        print('Success.')
+        ans = input('Anything else? (y/n): ')
+        if ans in YES:
+            continue
+        else:
+            break
 
+    
     ans = input('Would you like to see your TODO list? ')
     if ans in YES:
         see_todo()
     else:
         print('Ok.')
 
-    #save changes, close cursor and connection
-    connection.commit()
+    # close cursor and connection
     cursor.close()
     connection.close()
 
@@ -346,41 +351,36 @@ def see_todo():
 
     # inform the user
     print('\nNOTE: In case you did not know, you can call up your old TODO lists.\n')
+    
+    ans = ''
+    while ans not in YES and ans not in NO:
+        ans = input('Do you want to see your TODO list of today? (y/n):  ')
+    
+    # check is user wants 
+    if ans in NO:
+        day = month = year = 0
 
-    while True:
         # Ensure user typed in a valid date
-        try:
-            day = int(input('Day: '))
-            if day > 0 and day <= 31:
-                break
-        except ValueError:
-            print('\nInvalid number.\n')
-
-    while True:
+        while day <= 1 or day > 31:
+            day = get_integer('Day: ')
+        
         # Ensure user typed in a valid month
-        try:
-            month = int(input('Month number(M): '))
-            if month > 0 and month <= 12:
-                break
-        except ValueError:
-            print('\nInvalid month number.\n')
+        while month < 1 or month > 12:
+            month = get_integer('Month: ')
 
-    while True:
         # Ensure user typed in a valid year
-        try:
-            year = int(input('Year(YYYY): '))
+        while year < 1800 or year > datetime.now().year:
+            year = get_integer('Year(YYYY): ')
+        
+        rows = cursor.execute("SELECT description FROM todo WHERE day = ? AND month = ? AND year = ?", (day, month, year)).fetchall()
 
-            #if year is greater than present year, keep looping 
-            if year <= datetime.now().year :
-                break
-        except ValueError:
-            print('\nInvalid year.\n')
+    else:
+        day, month, year = (datetime.now().day, datetime.now().month, datetime.now().year)
+        rows = cursor.execute("SELECT description FROM todo WHERE day = ? AND month = ? AND year = ?", (day, month, year)).fetchall()  
     
-    rows = cursor.execute("SELECT description FROM todo WHERE day = ? AND month = ? AND year = ?", (day, month, year)).fetchall()
-    
-    #COnfirm there is a TODO in the list
+    # Confirm there is a TODO in the list
     if len(rows) == 0:
-        print("\nThere are no TODOs in your TODO list. Well done!\n")
+        print("\nThere are no TODOs in your TODO list for that day. Well done!\n")
     
     else:
         # aesthetics on the terminal
@@ -428,15 +428,12 @@ def remove_todo():
             i = 1
             for row in rows:
                 print(f'{i}. {row[0]}')
+                i += 1
 
             # Ensure user typed in a valid year
-            while True:
-                try:
-                    num = int(input('\nWhich index number: '))
-                    if num > 0:
-                        break
-                except ValueError:
-                    print('\nInvalid index number.\n')
+            num = 0
+            while num < 1 or num > len(rows):
+                num = get_integer('\nIndex number: ')
 
             # confirm from user it needs to be deleted
             confirm = ''
@@ -463,4 +460,4 @@ def remove_todo():
                 print('Ok.')
 
     else:
-        print('Sorry, to prevent clearing other TODOs, I will need the main keyword of the TODO')
+        print('\nSorry, to prevent clearing other TODOs, I will need the main keyword of the TODO.\n')

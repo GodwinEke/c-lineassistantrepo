@@ -12,15 +12,14 @@
 import sys
 import argparse
 import erikwonda
-from erikwonda import formatted
+from functions import formatted
 
 
 KEYWORDS = ["about", "hello", "hey", 
             "howdy", "help","check", 
-            "solve", "music", "add_todo",
-            "see_todo", "remove_todo",
-            "translate", "define", "joke",
-            "news", "eligible"]
+            "add_todo","see_todo", 
+            "remove_todo", "translate",
+            "define", "news", "eligible"]
 
 
 # get keywords from command line
@@ -28,7 +27,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('-k', '--keyword', required=True, default='help',
         help='Keyword Required.\nUsage: python main.py [-h] -k KEYWORD\n Type [-k help] for more details')
 
-# store it in a dictionary
+# store the argument in a dictionary
 args= vars(parser.parse_args())
 
 
