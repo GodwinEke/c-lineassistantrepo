@@ -29,7 +29,7 @@ def get_integer(prompt=None):
             if type(num) == int:
                 return num
         except ValueError:
-            print('\nInvalid day\n')
+            print('\nInvalid number\n')
             continue
     
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------------
