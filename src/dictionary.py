@@ -16,13 +16,18 @@ print_meanings(): prints the meanings of the word, returns None
 """
 class Dictionary:
     def __init__(self, content):
-        self.content = content
+        self.content = content[0][0]
     
     # get the value of the 'word' key
     def get_word(self):
         """
         Returns the word from JSON file
         """
+        # Ensure the word is avaialble 
+        try:
+            self.content['word']
+        except KeyError:
+            return 'Not available'
         return self.content['word']
 
     # get the value of the 'phonetic' key
@@ -30,7 +35,11 @@ class Dictionary:
         """
         Returns the value of the 'phonetic' key
         """
-
+        # Ensure phonetic is available
+        try:
+            self.content['phonetic']
+        except KeyError:
+            return 'Not available'
         return self.content["phonetic"]
     
     # get the key-value pairs of the phonetics list
@@ -38,6 +47,11 @@ class Dictionary:
         """"
         Prints the list of phonetics with its text and audio pronunciation
         """
+        # Ensure phonetics are available
+        try:
+            self.content['phonetics'][0]
+        except IndexError:
+            return
 
         for word in self.content['phonetics'][0]:
             print(f"{word}: {self.content['phonetics'][0][word]}")
@@ -47,10 +61,12 @@ class Dictionary:
         """
         Returns origin of the word if present
         """
+        # Ensure origin is available
         try:
-            self.content["origin"]
+            self.content['origin']
         except KeyError:
-            return "Not Available"
+            return 'Not available'
+        return self.content['origin']
 
     def print_meanings(self):
         """

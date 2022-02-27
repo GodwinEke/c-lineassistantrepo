@@ -2,11 +2,9 @@
 ----------------------------------------------------------------------------------------------------------------
 This is Erikwonda, a command-line virtual assistant  for programmers aimed to have versatile functionalities done on the terminal 
 without having to browse everything on the Internet. With the tap of a key, Erikwonda is being built to bring the 
-Internet to the terminal (and not to replace it though). Erikwonda was built with Python and SQL, leveraging the SQLite framework and
-APIs such as [The Guardian API](https://open-platform.theguardian.com/) and [The Free Dictionary](https://dictionaryapi.dev/) 
+Internet to the terminal (and not to replace it though). Erikwonda was built with APIs such as [The Guardian API](https://open-platform.theguardian.com/) and [The Free Dictionary API](https://dictionaryapi.dev/) 
 
 ## Features
-- Takes in arguments via the [arparse](https://docs.python.org/3/howto/argparse.html) **Python 3** library
 - Verifies if a word is an actual English, Russian, Chinese, German, Spanish or French word from SQL databases having **[274k+ - 1.6M+]** 
 words
 - Defines any English word with all its meanings, pronunciations, synonyms and antonyms in the dictionary.
@@ -22,17 +20,17 @@ lists as specified
 To use Erikwonda, go to your command terminal. This README will assume you are already in the file directory in your terminal.
 In order to use Erikwonda, a keyword will be needed as shown below:
 ```
-python main.py -k [KEYWORD]
+python erikwonda.py [KEYWORD]
 ```
 where ```[KEYWORD]``` returns the desired feature. 
 To see all commands, type in:
 ```
-python main.py -k help
+python main.py help
 ```
 and you will see a list of functions as outlined below:
 ```
 KEYWORDS                       FUNCTIONS
-------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------
 about                           Returns the purpose of the assistant and a description of the author.
 news                            Returns a list of recent news of different sections (Business, Tech etc.) from The Guardian using The Guardian API.
 define                          Returns definitions, synonyms and antonyms of a word using the Free Dictionary API.
@@ -44,9 +42,20 @@ add_todo                        Add events into a TODO list for user
 see_todo                        Returns a list of events added to TODO list
 remove_todo                     Allows user to remove events from TODO list.
 ```
+# Configurations
+----------------------------------------------------------------------------------------------------------------------------------
+To use the ```news``` keyword, user must retrieve an ```apikey``` from [The Guardian](https://open-platform.theguardian.com/) and add to your ```ENVIRONMENT_VARIABLE```
+If you are using PowerShell, type on the terminal:
+```$env:GUARDIAN_APIKEY = api_key```
+If you are using Bash or Linux, type on the shell:
+```export GUARDIAN_APIKEY = api_key```
 
-To use the ```news``` keyword, user must retrieve an ```API_KEY``` from [The Guardian](https://open-platform.theguardian.com/) and add to your ```ENVIRONMENT_VARIABLE```
-and set as ```FILE_PATH```.
+In addition, copy the directory (```file_path```) of where the folder is located and add to the ```ENVIRONMENT_VARIABLE```:
+If you are using PowerShell, type on the terminal:
+```$env:FILE_PATH = file_path```
+If you are using Bash or Linux, type on the shell:
+```export FILE_PATH = file_path```
+
 
 # Walkthrough
 Here is a walkthrough of Erikwonda:
@@ -58,7 +67,6 @@ GIF created by[Convertio](https://convertio.co/mp4-gif/)
 - Implement more functionalities
 - Leverage the use of APIs to make it more sophisticated
 - Improve aesthetics
-- Create a function to prompt users to get valid input to remove redundancies of the ```try-except``` function block.
 
 # Notes
 - *Data used for the license detector was gotten from [The Word Population Review](https://worldpopulationreview.com/state-rankings/driving-age-by-state)
