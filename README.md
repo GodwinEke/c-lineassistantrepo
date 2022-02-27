@@ -46,22 +46,22 @@ remove_todo                     Allows user to remove events from TODO list.
 ----------------------------------------------------------------------------------------------------------------------------------
 To use the ```news``` keyword, user must retrieve an ```apikey``` from [The Guardian](https://open-platform.theguardian.com/) and add to your ```ENVIRONMENT_VARIABLE```.<br/>
 If you are using PowerShell, type on the terminal:<br/>
-```$env:GUARDIAN_APIKEY = api_key```
+```$env:GUARDIAN_APIKEY = api_key```<br/>
 If you are using Bash or Linux, type on the shell:<br/>
-```export GUARDIAN_APIKEY = api_key```
+```export GUARDIAN_APIKEY = api_key```<br/>
 
 In addition, copy the directory (```file_path```) of where the folder is located and add to the ```ENVIRONMENT_VARIABLE```:<br/>
 If you are using PowerShell, type on the terminal:<br/>
-```$env:FILE_PATH = file_path```
+```$env:FILE_PATH = file_path```<br/>
 If you are using Bash or Linux, type on the shell:<br/>
-```export FILE_PATH = file_path```
+```export FILE_PATH = file_path```<br/>
 
 
 # Walkthrough
 Here is a walkthrough of Erikwonda:
 ![Walkthrough](https://github.com/GodwinEke/c-lineassistantrepo/blob/master/gif/Walkthrough1.gif)
 
-GIF created by[Convertio](https://convertio.co/mp4-gif/)
+GIF created by[CloudConvert](https://cloudconvert.com)
 
 # Future Improvements
 - Implement more functionalities
