@@ -277,7 +277,9 @@ def add_todo():
     prints 'Success' if successfully added
     """
     
-    #get file path [you can choose file path though]
+    #get file path
+    if not os.environ.get('FILE_PATH'):
+       raise RuntimeError('FILE_PATH not set')
     path = os.environ.get('FILE_PATH')
     
     # initialize the connection
@@ -328,7 +330,9 @@ def see_todo():
     prints an iteration of the TODOs on that day
     """
 
-    #user can change the file path to use
+    #get file path
+    if not os.environ.get('FILE_PATH'):
+       raise RuntimeError('FILE_PATH not set')
     path = os.environ.get('FILE_PATH')
     print(path)
 
@@ -392,7 +396,9 @@ def remove_todo():
     COnfirms from user for deletion
     Prints 'Success' if successfully deleted
     """
-
+    #get file path
+    if not os.environ.get('FILE_PATH'):
+       raise RuntimeError('FILE_PATH not set')
     path = os.environ.get('FILE_PATH')
 
     # initialize the connection
