@@ -23,7 +23,7 @@ In order to use Erikwonda, a keyword will be needed as shown below:
 python erikwonda.py [KEYWORD]
 ```
 where ```[KEYWORD]``` returns the desired feature. 
-To see all commands, type in:
+To see all commands, type:
 ```
 python main.py help
 ```
@@ -36,7 +36,7 @@ news                            Returns a list of recent news of different secti
 define                          Returns definitions, synonyms and antonyms of a word using the Free Dictionary API.
 help                            Returns a list of command-line arguments to type to implement the functionalitie.s
 check                           Checks if user input is a word in English, Chinese, Russian, German, Japanese, French or Spanish.
-eligible                        Checks if user is eligbile for a Full Licence, Provisional License or Learner's Permit in all 54 states of America
+eligible                        Checks if user is eligbile for a Full Licence, Provisional License or Learner's Permit in all 50 states of America
 hello, howdy, hey               Prompts erikwonda to start a conversation with user.
 add_todo                        Add events into a TODO list for user
 see_todo                        Returns a list of events added to TODO list
@@ -44,22 +44,22 @@ remove_todo                     Allows user to remove events from TODO list.
 ```
 # Configurations
 ----------------------------------------------------------------------------------------------------------------------------------
-To use the ```news``` keyword, user must retrieve an ```apikey``` from [The Guardian](https://open-platform.theguardian.com/) and add to your ```ENVIRONMENT_VARIABLE```
-If you are using PowerShell, type on the terminal:
+To use the ```news``` keyword, user must retrieve an ```apikey``` from [The Guardian](https://open-platform.theguardian.com/) and add to your ```ENVIRONMENT_VARIABLE```.<br/>
+If you are using PowerShell, type on the terminal:<br/>
 ```$env:GUARDIAN_APIKEY = api_key```
-If you are using Bash or Linux, type on the shell:
+If you are using Bash or Linux, type on the shell:<br/>
 ```export GUARDIAN_APIKEY = api_key```
 
-In addition, copy the directory (```file_path```) of where the folder is located and add to the ```ENVIRONMENT_VARIABLE```:
-If you are using PowerShell, type on the terminal:
+In addition, copy the directory (```file_path```) of where the folder is located and add to the ```ENVIRONMENT_VARIABLE```:<br/>
+If you are using PowerShell, type on the terminal:<br/>
 ```$env:FILE_PATH = file_path```
-If you are using Bash or Linux, type on the shell:
+If you are using Bash or Linux, type on the shell:<br/>
 ```export FILE_PATH = file_path```
 
 
 # Walkthrough
 Here is a walkthrough of Erikwonda:
-![Walkthrough](https://github.com/GodwinEke/c-lineassistantrepo/blob/master/gif/walkthrough.gif)
+![Walkthrough](https://github.com/GodwinEke/c-lineassistantrepo/blob/master/gif/Walkthrough1.gif)
 
 GIF created by[Convertio](https://convertio.co/mp4-gif/)
 
