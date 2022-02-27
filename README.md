@@ -17,7 +17,7 @@ lists as specified
 
 # Usage
 --------------------------------------------------------------------------------------------------------------------
-To use Erikwonda, go to your command terminal. This README will assume you are already in the file directory in your terminal.
+To use Erikwonda, go to your command terminal. This README will assume you are at the file directory of the repo in your terminal.
 In order to use Erikwonda, a keyword will be needed as shown below:
 ```
 python erikwonda.py [KEYWORD]
@@ -44,17 +44,18 @@ remove_todo                     Allows user to remove events from TODO list.
 ```
 # Configurations
 ----------------------------------------------------------------------------------------------------------------------------------
-To use the ```news``` keyword, user must retrieve an ```apikey``` from [The Guardian](https://open-platform.theguardian.com/) and add to your ```ENVIRONMENT_VARIABLE```.<br/>
-If you are using PowerShell, type on the terminal:<br/>
+To use the ```news``` keyword, user must retrieve an ```apikey``` from [The Guardian](https://open-platform.theguardian.com/) and add to your ```ENVIRONMENT_VARIABLES```.<br/>
+If you are using PowerShell, type in the terminal:<br/>
 ```$env:GUARDIAN_APIKEY = api_key```<br/>
-If you are using Bash or Linux, type on the shell:<br/>
+If you are using Bash or Linux, type in the shell:<br/>
 ```export GUARDIAN_APIKEY = api_key```<br/>
 
-In addition, copy the directory (```file_path```) of where the folder is located and add to the ```ENVIRONMENT_VARIABLE```:<br/>
-If you are using PowerShell, type on the terminal:<br/>
+In addition, copy the directory (```file_path```) of where theis repo is located in your computer and add it to the ```ENVIRONMENT_VARIABLES```:<br/>
+If you are using PowerShell, type in the terminal:<br/>
 ```$env:FILE_PATH = file_path```<br/>
-If you are using Bash or Linux, type on the shell:<br/>
+If you are using Bash or Linux, type in the shell:<br/>
 ```export FILE_PATH = file_path```<br/>
+where ```file_path``` is the path of the repo in your computer.
 
 
 # Walkthrough
@@ -77,4 +78,4 @@ Please refer to [CREDITS.md](https://github.com/GodwinEke/c-lineassistantrepo/bl
 possible
 
 # Report Issues
-If you have any problems or issues or suggestions, you are most welcomed :handshake:
+If you have any problems or issues or suggestions, report any issues to ekegodwinc@gmail.com :handshake:
