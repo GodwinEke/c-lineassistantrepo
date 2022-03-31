@@ -9,17 +9,19 @@ Functions of erikwonda
 erikwonda.languages() : returns a list of languages erikwonda knows
 erikwonda.help(): returns a list of keywords used when running the program
 erikwonda.check (keyword, language): returns a statement verifying if a word is a Russian, Chinese, Japanese, Spanish, or English word.
-erikwonda.hello(): strikes up a conversation with user
+erikwonda.hello(): strikes up a conversation with user...
 """
 
 import sqlite3
 import time
-import aiohttp, asyncio
+import asyncio
 import os
 import license_detector
-from keywords import Answers, Action
-from auxilliary import get_integer, formatted, requests
-from jokes import Jokes, greetings
+import json
+from weather import Weather
+from keywords import Answers
+from auxilliary import *
+from jokes import *
 from datetime import datetime
 from news import News
 from dictionary import Dictionary
@@ -38,11 +40,12 @@ eligible\t\t\tChecks if user is eligbile for a Full Licence, Provisional License
 hello, howdy, hey\t\tPrompts erikwonda to start a conversation with user.\n\
 add_todo\t\t\tAdd events into a TODO list for user.\n\
 see_todo\t\t\tReturns a list of events added to TODO list.\n\
-remove_todo\t\t\tAllows user to remove events from TODO list."
+remove_todo\t\t\tAllows user to remove events from TODO list.\n\
+weather\t\t\t\tReturns the weather for the user's city of residence"
 
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-def languages() -> list[str]:
+def languages()-> list:
     """"
     Returns a list of languages Erikwonda knows
     """
@@ -50,19 +53,14 @@ def languages() -> list[str]:
 
 
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------------
-def check(keyword, language):
+def check(keyword:str, language:str)->bool:
     """
     Assumes keyword is str,
     Assumes language is str,
     returns True if keyword is a word in the language else False
     """
    
-   #get file path
-    if not os.environ.get('FILE_PATH'):
-       raise RuntimeError('FILE_PATH not set')
-    path = os.environ.get('FILE_PATH')
-
-    connection = sqlite3.connect(f"{path}/data/databases/{formatted(language)}_words.db")
+    connection = sqlite3.connect(f"../data/databases/{formatted(language)}_words.db")
     cursor = connection.cursor()
 
     # Check for the word in the specified language
@@ -98,16 +96,16 @@ def check(keyword, language):
 
 
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------------
-def error_message():
+def error_message()->str:
     """
     Returns an error message
     """
     return "Sorry, I cannot do this at the moment.\n\
-Just type [python main.py -k help] on your terminal to know what I can do."
+Just type [python erikwonda.py help] on your terminal to know what I can do."
 
 
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------------
-def default_message():
+def default_message()->str:
     """
     Returns a default message
     """
@@ -131,7 +129,7 @@ def loop():
 
 
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------------
-def hello():
+def hello()->str:
 
     """
     Ellicits a conversation with user
@@ -192,21 +190,21 @@ def hello():
 
 
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------------
-def about():
+def about()->str:
     """
     About Erikwonda and the Author
     """
 
-    return "\nHi, my name is Erikwonda and I am your command-line virtual assistant aimed to have versatile functionalities.\n\
+    return "\nHello, I am Erikwonda and I am your command-line virtual assistant aimed to have versatile functionalities.\n\
 Some of the things I can do are checking if a user's input is a word in six languages,define a word for you from the English\
 dictionary, create a TODO list, strike up a conversation, say jokes etc.\n\
-More details if you type [help] in the terminal.\n\
+More details if you type [help] in the terminal.\n\n\
 My creator is Godwin Chierika Eke, a Computer Engineering major at Morgan State University.\nYou can reach him at https://mailto:ekegodwinc@gmail.com\
- to report problems or issues. To pull up any request, reach him at https://github.com/GodwinEke\n"
+ to report problems or issues. To pull up any request, please do at https://github.com/GodwinEke\n"
 
 
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------------
-def define(word_input):
+def define(word_input:str):
     """"
     Assumes word_input as str,
     Returns the meanings, synonyms, anotnyms, phonetics e.t.c of a word
@@ -224,6 +222,12 @@ def define(word_input):
     # get word from Free Dictionary API
     url = [f"https://api.dictionaryapi.dev/api/v2/entries/en/{formatted(word_input)}"]
     response = asyncio.get_event_loop().run_until_complete(requests(url))
+
+    if type(response[0]) == dict and response[0].get('title'):
+        print('\nI cannot give you the definition you seek.  If you still want to check for the word, click(or copy) the link:\
+ https://google.com/search?q={word_input}\n')
+        return
+    
 
     # parse the json file
     contents = Dictionary(response)
@@ -277,13 +281,8 @@ def add_todo():
     prints 'Success' if successfully added
     """
     
-    #get file path
-    if not os.environ.get('FILE_PATH'):
-       raise RuntimeError('FILE_PATH not set')
-    path = os.environ.get('FILE_PATH')
-    
     # initialize the connection
-    connection = sqlite3.connect(f'{path}/data/todo/todo.db')
+    connection = sqlite3.connect(f"../data/todo/todo.db")
     cursor = connection.cursor()
 
     # aesthetics on the terminal
@@ -323,6 +322,7 @@ def add_todo():
     cursor.close()
     connection.close()
 
+
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 def see_todo():
     """
@@ -330,14 +330,8 @@ def see_todo():
     prints an iteration of the TODOs on that day
     """
 
-    #get file path
-    if not os.environ.get('FILE_PATH'):
-       raise RuntimeError('FILE_PATH not set')
-    path = os.environ.get('FILE_PATH')
-    print(path)
-
     # initialize the connection
-    connection = sqlite3.connect(f'{path}/data/todo/todo.db')
+    connection = sqlite3.connect(f"../data/todo/todo.db")
     cursor = connection.cursor()
 
     # inform the user
@@ -389,20 +383,16 @@ def see_todo():
     connection.close()
 
 
- # ------------------------------------------------------------------------------------------------------------------------------------------------------------------       
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------       
 def remove_todo():
     """
     Prompts user to input the day, month, and year of the desired TODO
     COnfirms from user for deletion
     Prints 'Success' if successfully deleted
     """
-    #get file path
-    if not os.environ.get('FILE_PATH'):
-       raise RuntimeError('FILE_PATH not set')
-    path = os.environ.get('FILE_PATH')
 
     # initialize the connection
-    connection = sqlite3.connect(f'{path}/data/todo/todo.db')
+    connection = sqlite3.connect(f"../data/todo/todo.db")
     cursor = connection.cursor()
 
     print('\n⚠️  Note: This feature removes TODO list of today only⚠️\n')
@@ -455,3 +445,67 @@ def remove_todo():
 
     else:
         print('\nSorry, to prevent clearing other TODOs, I will need the main keyword of the TODO.\n')
+
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------------------------       
+def weather():
+
+    #check if key has been set
+    if not os.environ["WEATHER_API_KEY"]:
+        raise RuntimeError('WEATHER_API_KEY not set')
+    key = os.environ["WEATHER_API_KEY"]
+
+    json_file = open(f"../data/data.json", "r+")
+    data = json.load(json_file)
+
+    urls = []
+    if not data["data"].get("location"):
+        print("\nTo tell you the weather, I will need to know your city of residence.")
+        ans = input("Are you comfortable sharing your city with me (y/n)? ")
+
+        if ans in Answers.YES:
+            print("Thank you.")
+
+            # make sure the user gives a correct input
+            while True:
+                city = input("City: ")
+                if len(city) != 0:
+                    break
+
+                # confirm that is the user's city'
+                city_ans = input("Are you sure that is the correct spelling? ")
+                if city in Answers.YES:
+                    break
+                else:
+                    continue
+
+        elif ans in Answers.NO:
+            print("\nI get it. You do not trust me yet. But when you do, just use the keyword 'weather' to ask me for the weather\n")
+        else:
+            print("\n Sorry but I do not understand your answer. Please try again.")
+
+        # save the city for future actions
+        data["data"]["location"] = city
+        json_file.seek(0)
+        json.dump(data, json_file, indent=4)
+
+    else:
+        city = data["data"]["location"]
+
+    urls.append(f"http://api.weatherapi.com/v1/current.json?key={key}&q={city}&aqi=no")
+        
+
+    results = asyncio.get_event_loop().run_until_complete(requests(urls, key))
+    if results[0].get("error") is not None:
+        print("Please confirm the spelling of your city is correct")
+
+        # if not correct, remove from JSON file
+        del data["data"]["location"]
+        json_file.seek(0)
+        json.dump(data, json_file, indent=4)
+
+        return
+
+    result = Weather(results)
+    result.print_info()
+    json_file.close()

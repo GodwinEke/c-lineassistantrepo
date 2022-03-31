@@ -33,14 +33,15 @@ KEYWORDS                       FUNCTIONS
 -------------------------------------------------------------------------------------------------------------------------------------
 about                           Returns the purpose of the assistant and a description of the author.
 news                            Returns a list of recent news of different sections (Business, Tech etc.) from The Guardian using The Guardian API.
-define                          Returns definitions, synonyms and antonyms of a word using the Free Dictionary API.
-help                            Returns a list of command-line arguments to type to implement the functionalitie.s
-check                           Checks if user input is a word in English, Chinese, Russian, German, Japanese, French or Spanish.
+define                          Returns definitions, synonyms and antonyms of a word using the Free Dictionary API
+help                            Returns a list of command-line arguments to type to implement the functionalities
+check                           Checks if user input is a word in English, Chinese, Russian, German, Japanese, French or Spanish
 eligible                        Checks if user is eligbile for a Full Licence, Provisional License or Learner's Permit in all 50 states of America
-hello, howdy, hey               Prompts erikwonda to start a conversation with user.
+hello, howdy, hey               Prompts erikwonda to start a conversation with user
 add_todo                        Add events into a TODO list for user
 see_todo                        Returns a list of events added to TODO list
-remove_todo                     Allows user to remove events from TODO list.
+remove_todo                     Allows user to remove events from TODO list
+weather                         Returns the weather for the user's city of residence
 ```
 # Configurations
 ----------------------------------------------------------------------------------------------------------------------------------

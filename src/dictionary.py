@@ -76,15 +76,25 @@ class Dictionary:
         for meaning in num_definitions:
 
             # if word is a definition, iterate the meaning, antonyms and synonyms
-            if type(num_definitions[meaning]) == list:
-
-                # aesthetics
-                print(f"Definitions:")
-                print( 15 * '-')
+            if meaning == 'definitions' and type(num_definitions[meaning]) == list:
+                counter = 1
 
                 #Traverse through the number of definitions
-                for definition in num_definitions[meaning][0]:
-                    print(f"{definition}: {num_definitions[meaning][0][definition]}")
+                for definition in num_definitions[meaning]:
 
+                    if definition.get('definition'):
+                        print('\n', counter, definition['definition'])
+                    
+                    # confirm there is an example section
+                    if definition.get('example'):
+                        # if there is no antonym 
+                        if len(definition['example']) != 0:
+                            print('\tExample:', definition['example'])
+                        else:
+                            print('\tExamples: None')
+                    counter += 1
             else:
                 print(f"{meaning}: {self.content['meanings'][0][meaning]}")
+        
+        # print the source 
+        print('\nSource(s):', self.content['sourceUrls'])
