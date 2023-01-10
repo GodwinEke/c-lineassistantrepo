@@ -1,12 +1,14 @@
-# Author: Godwin Chierika Eke
-# Email: https://mailto:ekegodwinc@gmail.com
-# Github: https://www.github.com/GodwinEke
+""" 
+Author: Godwin Chierika Eke
+Email: https://mailto:ekegodwinc@gmail.com
+Github: https://www.github.com/GodwinEke
 
-# +================================================================+
-# |     ___   __   .             __                                |
-# |    |___| |__|  |  |/ | /\ | |  | |\ |  ___|  /\                |
-# |    |___  |\    |  |\ |/  \| |__| | \| |___| /  \               |
-# +================================================================+
+ +================================================================+
+ |     ___   __   .             __                                |
+ |    |___| |__|  |  |/ | /\ | |  | |\ |  ___|  /\                |
+ |    |___  |\    |  |\ |/  \| |__| | \| |___| /  \               |
+ +================================================================+
+"""
 
 import sys
 import functions as wonda

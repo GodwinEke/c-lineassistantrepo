@@ -455,7 +455,7 @@ def weather():
         raise RuntimeError('WEATHER_API_KEY not set')
     key = os.environ["WEATHER_API_KEY"]
 
-    json_file = open(f"../data/data.json", "r+")
+    json_file = open(f"../data/settings.json", "r+")
     data = json.load(json_file)
 
     urls = []
@@ -474,7 +474,7 @@ def weather():
 
                 # confirm that is the user's city'
                 city_ans = input("Are you sure that is the correct spelling? ")
-                if city in Answers.YES:
+                if city_ans in Answers.YES:
                     break
                 else:
                     continue
